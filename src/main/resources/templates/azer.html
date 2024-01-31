@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionnaire de Biere</title>
+</head>
+<body>
+<h1 style="color:red" data-th-text="${erreur}"/>
+<form data-th-action="@{/biere}" data-th-object="${biere}" method="post">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" data-th-field="*{nom}"/>
+    <span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"/>
+
+     <label for="ty_biere">Type bière</label>
+    <select id="ty_biere">
+        <option data-th-each="beer:${lstTypeBiere}" data-th-value="${beer}"></option>
+    </select>
+
+    <p data-th-value="${lstTypeBiere}"></p>
+    <!--<input type="text" id="ty_biere" data-th-field="*{ty_biere}"/>-->
+    <span data-th-if="${#fields.hasErrors('ty_biere')}" data-th-errors="*{ty_biere}"/>
+
+    <label for="description">Description</label>
+    <input type="text" id="description" data-th-field="*{description}"/>
+    <span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"/>
+
+    <label for="dg_alcool">Degrés alcool</label>
+    <input type="number" id="dg_alcool" data-th-field="*{dg_alcool}"/>
+    <span data-th-if="${#fields.hasErrors('dg_alcool')}" data-th-errors="*{dg_alcool}"/>
+
+    <label for="note">Note</label>
+    <input type="number" id="note" data-th-field="*{note}"/>
+    <span data-th-if="${#fields.hasErrors('note')}" data-th-errors="*{note}"/>
+
+    <input type ="submit" value="ajouter"/>
+</form>
+<br>
+<label for="aaa" data-th-if="${lstBiere.size()>0}">Liste de bières</label>
+<br>
+<p data-th-each="biere : ${lstBiere}" id="aaa">
+    <span data-th-text="${biere.id_biere}"/>
+    <span data-th-text="${biere.nom}"/>
+    <span data-th-text="${biere.ty_biere}"/>
+    <span data-th-text="${biere.description}"/>
+    <span data-th-text="${biere.dg_alcool}"/>
+    <span data-th-text="${biere.note}"/>
+</p>
+<br>
+
+
+</body>
+</html>

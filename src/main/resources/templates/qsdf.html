@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form data-th-action="@{/brasserie}" data-th-object="${brasserie}" method="post">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" data-th-field="*{nom}"/>
+    <span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"/>
+
+    <label for="adresse">Adresse</label>
+    <input type="text" id="adresse" data-th-field="*{adresse}"/>
+    <span data-th-if="${#fields.hasErrors('adresse')}" data-th-errors="*{adresse}"/>
+
+    <label for="coord_gps">Coordonnée gps</label>
+    <input type="text" id="coord_gps" data-th-field="*{coord_gps}"/>
+    <span data-th-if="${#fields.hasErrors('coord_gps')}" data-th-errors="*{coord_gps}"/>
+
+    <label for="dt_ouverture">Date ouverture</label>
+    <input type="date" id="dt_ouverture" data-th-field="*{dt_ouverture}"/>
+    <span data-th-if="${#fields.hasErrors('dt_ouverture')}" data-th-errors="*{dt_ouverture}"/>
+
+    <input type ="submit" value="ajouter"/>
+</form>
+<br>
+<label for="bbb" >Liste de brasseries</label>
+<br>
+<p data-th-each="brasserie : ${lstBrasserie}" id="bbb">
+    <span data-th-text="${brasserie.id_brasserie}"/>
+    <span data-th-text="${brasserie.nom}"/>
+    <span data-th-text="${brasserie.adresse}"/>
+    <span data-th-text="${brasserie.coord_gps}"/>
+    <span data-th-text="${brasserie.dt_ouverture}"/>
+</p>
+
+</body>
+</html>
